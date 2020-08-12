@@ -5,9 +5,63 @@ function buildMessage(text) {
 		opacity:0,
 		transition:"none",
 		html:text,
-		height:"200px",
+		height:"600px",
 		width:"500px",
 		scrolling:false
+	});
+}
+
+// build map with multiple shelves
+
+function buildMaps(regions) {
+
+	var locMessage = "";
+	var locCode = "";
+	var floor = "";
+
+	regions.forEach(region => {
+		var splitId = region.id.split('.'); // id generally looks like "5.G47.w"
+		floor = splitId[0]; // first element of the id
+	});
+
+	var theImage = $('<img>');
+	var imageURL = "img/maps/floor" + floor + ".png";
+	theImage.attr('src', imageURL);
+
+	theImage.attr('width', '525px');
+	theImage.attr('height', '675px');
+	theImage.attr('id', 'theImage');
+	$('#theMap').prepend(theImage);
+
+	// Draw a rectangle on the canvas and then unhide the canvas.
+	var drawingLayer = document.getElementById("theCanvas");
+	var drawingContext = drawingLayer.getContext("2d");
+	drawingContext.globalAlpha = 0.8;
+	drawingContext.fillStyle = "#C70039";
+
+	regions.forEach(region => {
+		drawingContext.fillRect(region.x, region.y, region.width, region.height);
+		$('#theCanvas').show();
+	});
+
+   
+   	// Display the map in a modal window.
+	$.colorbox({
+		opacity:0,
+		transition:"none",
+		inline:true,
+		href:"#theMap",
+		height:"725px",
+		width:"540px",
+		scrolling:false,
+		onCleanup:function() {
+			// When the modal window closes, get rid of the image, message, and rectangle
+			// and re-hide the canvas.
+			drawingContext.clearRect(0, 0, drawingLayer.width, drawingLayer.height);
+			$('#theImage').remove();
+			$('#theCanvas').hide();
+			$('.locMessage').remove();
+		}
 	});
 }
 
@@ -37,21 +91,25 @@ function buildMap(data, callNumber) {
 		locMessage = $('<p class="locMessage">' + callNumber + ' is available at ' + '<span class="stack">' + stack + '</span> <span class="face">' + face + '</span></p>');
 	}
 
-	locMessage.insertAfter('#theCanvas');
+	//locMessage.insertAfter('#theCanvas');
 
 	// Get the appropriate floor map image and insert it
 	// into the div that contains the canvas.
+
 	var theImage = $('<img>');
-	var imageURL = "img/mapImages/floor_" + floor + ".png";
+	var imageURL = "img/maps/floor" + floor + ".png";
 	theImage.attr('src', imageURL);
+
+	theImage.attr('width', '525px');
+	theImage.attr('height', '675px');
 	theImage.attr('id', 'theImage');
 	$('#theMap').prepend(theImage);
 
 	// Draw a rectangle on the canvas and then unhide the canvas.
 	var drawingLayer = document.getElementById("theCanvas");
 	var drawingContext = drawingLayer.getContext("2d");
-	drawingContext.globalAlpha = 0.6;
-	drawingContext.fillStyle = "#A34687";
+	drawingContext.globalAlpha = 0.8;
+	drawingContext.fillStyle = "#C70039";
 	drawingContext.fillRect(data.x, data.y, data.width, data.height);
 	$('#theCanvas').show();
    
@@ -61,8 +119,8 @@ function buildMap(data, callNumber) {
 		transition:"none",
 		inline:true,
 		href:"#theMap",
-		height:"550px",
-		width:"650px",
+		height:"725px",
+		width:"540px",
 		scrolling:false,
 		onCleanup:function() {
 			// When the modal window closes, get rid of the image, message, and rectangle
@@ -76,7 +134,14 @@ function buildMap(data, callNumber) {
 }
 
 // Add a "Where?" link at end of each record.
-$('.holding').append($('<a href="#" class="where">Where?</a>'));
+
+// $('.holding > .display').each(function(){
+// 	(this).wrapInner('<a href="#" class="where">' + $(this).html() + '</a>');
+// });
+	//.append($('<a href="#" class="where">Where?</a>'));
+
+
+$('.holding > .display').wrap($('<a href="#" class="where"></a>'));
 
 // Here's what happens when you click on a "where" link.
 $('.where').click(function(e) {
@@ -84,6 +149,7 @@ $('.where').click(function(e) {
 	var callNumber = $(this).siblings('.callNumber').text();
 	var location = $(this).siblings('.location').text();
 	var availability = $(this).siblings('.availability').text();
+	var shelves = $(this).siblings('.shelves').text();
 
 	if (availability === 'Available') {
 		var start = "";
@@ -93,6 +159,8 @@ $('.where').click(function(e) {
 		var message = "";
 		var lookupArray;
 		var locationStatic;
+		var inShelves = false;
+
 		// Determine which data array we need to use (from mapData.js).
 		switch(location) {
 			case "Music Stacks":
@@ -106,6 +174,11 @@ $('.where').click(function(e) {
 			case "General Stacks":
 				lookupArray = stacks;
 				locationStatic = false;
+				break;
+			case "Shelves":
+				lookupArray = allShelves;
+				locationStatic = true;
+				inShelves = true;
 				break;
 			default:
 				lookupArray = staticLocations;
@@ -134,6 +207,17 @@ $('.where').click(function(e) {
 			if (response === "") {  // can't find the range for that call number
 				buildMessage(messages['mapFail']);
 			}
+		} else if(inShelves) { // it's shelves location (not mapped to stack level; e.g., newspapers)
+			var regions = [];
+			for(var i = 0; i < lookupArray.length; i++) {
+				var id = lookupArray[i].id;
+				shelves.split(' ').forEach(shelf => {
+					if (shelf == id) {
+						regions.push(lookupArray[i]);
+					}
+				});
+			}
+			buildMaps(regions);
 		} else { // it's in a static location (not mapped to stack level; e.g., newspapers)
 			response = lookupArray[location];
 			buildMap(response);
