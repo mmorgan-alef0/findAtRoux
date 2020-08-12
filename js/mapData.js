@@ -34,7 +34,15 @@ var staticLocations = {
       "Folio": { "id":"5.folio","x":329,"y":187,"width":14,"height":36}
 };
 
+var allShelves = [
+      {"id":"2.19.a", "x":"339","y":"542","width":"82","height":"4"},
+      {"id":"2.31.b", "x":"79","y":"339","width":"108","height":"4"},
+      {"id":"2.32.a", "x":"79","y":"292","width":"108","height":"4"},
+      {"id":"2.32.b", "x":"118","y":"275","width":"69","height":"4"}   
+]
+
 var stacks = [
+
 {"start":"PQ7297 .G23 O8 1994","width":"10","y":"246","id":"5.G65.w","end":"PQ8549 .P35 Z745 1987","height":"82","x":"356"},
 {"start":"E99 .H6 B67 1992","width":"10","y":"221","id":"4.G17.w","end":"E173 .C555","height":"82","x":"383"},
 {"x":"447","height":"82","end":"E761 .H6","id":"4.G21.e","y":"221","start":"E672 .C293","width":"10"},
@@ -144,7 +152,7 @@ var stacks = [
 {"start":"GV347 .N13 1967","width":"10","y":"48","id":"4.G26.w","height":"82","end":"GV1589 .S52 1988","x":"456"},
 {"height":"82","end":"PS3580 .R3 S5 1973","x":"147","start":"PS3563 .A635 R6","y":"246","width":"10","id":"5.G77.w"},
 {"id":"4.G12.e","width":"10","start":"DC145 .D7","y":"221","x":"284","end":"DD218 .G2213 1986","height":"82"},
-{"end":"PR4963 .B7 1933","height":"82","x":"278","start":"PR4550 .E50 v.9","y":"246","width":"10","id":"5.G69.e"},
+{"end":"PR4963 .B7 1933","height":"82","x":"525","start":"PR4550 .E50 v.9","y":"675","width":"10","id":"5.G69.e"},
 {"id":"5.G73.e","width":"10","start":"PS634 .W52","y":"246","x":"208","end":"PS1850 .F63 v.4","height":"82"},
 {"id":"5.G76.e","width":"10","start":"PS3553 .O7 A5","y":"246","x":"156","height":"82","end":"PS3563 .A63 L5"},
 {"height":"82","end":"HQ470 .S3 V3 2002","x":"217","start":"HN590 .A5 G55 1987","y":"29","width":"10","id":"5.G36.w"},
