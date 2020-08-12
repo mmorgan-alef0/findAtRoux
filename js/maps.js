@@ -40,7 +40,8 @@ function buildMaps(regions) {
 	drawingContext.fillStyle = "#C70039";
 
 	regions.forEach(region => {
-		drawingContext.fillRect(region.x, region.y, region.width, region.height);
+		drawingContext.fillRect(region.x, region.y, region.width - region.shelfno - 15, region.height);
+		drawingContext.fillRect(region.x + region.width - region.shelfno, region.y, region.shelfno, region.height);
 		$('#theCanvas').show();
 	});
 
@@ -211,7 +212,7 @@ $('.where').click(function(e) {
 			var regions = [];
 			for(var i = 0; i < lookupArray.length; i++) {
 				var id = lookupArray[i].id;
-				shelves.split(' ').forEach(shelf => {
+				shelves.split(',').forEach(shelf => {
 					if (shelf == id) {
 						regions.push(lookupArray[i]);
 					}

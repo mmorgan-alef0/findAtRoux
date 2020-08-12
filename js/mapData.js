@@ -35,10 +35,14 @@ var staticLocations = {
 };
 
 var allShelves = [
-      {"id":"2.19.a", "x":"339","y":"542","width":"82","height":"4"},
-      {"id":"2.31.b", "x":"79","y":"339","width":"108","height":"4"},
-      {"id":"2.32.a", "x":"79","y":"292","width":"108","height":"4"},
-      {"id":"2.32.b", "x":"118","y":"275","width":"69","height":"4"}   
+      {"id":"2.19.a", "x":339,"y":542,"width":82,"height":4,"shelfno":49},
+      {"id":"2.31.b", "x":79,"y":339,"width":108,"height":4,"shelfno":14},
+      {"id":"2.32.a", "x":79,"y":297,"width":108,"height":4,"shelfno":14},
+      {"id":"2.32.b", "x":79,"y":292,"width":108,"height":4,"shelfno":14},
+      {"id":"2.33.a", "x":118,"y":275,"width":69,"height":4,"shelfno":14},
+      {"id":"2.33.b", "x":118,"y":270,"width":69,"height":4,"shelfno":14},
+      {"id":"2.34.a", "x":154,"y":253,"width":33,"height":4,"shelfno":14},
+      {"id":"2.34.b", "x":154,"y":248,"width":33,"height":4,"shelfno":14}
 ]
 
 var stacks = [
