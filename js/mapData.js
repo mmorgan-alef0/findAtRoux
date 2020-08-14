@@ -43,7 +43,11 @@ var allShelves = [
       {"id":"2.33.b", "x":118,"y":270,"width":69,"height":4,"shelfno":14},
       {"id":"2.34.a", "x":154,"y":253,"width":33,"height":4,"shelfno":14},
       {"id":"2.34.b", "x":154,"y":248,"width":33,"height":4,"shelfno":14},
-      {"id":"3.56.a", "x":74,"y":542,"width":112,"height":5,"shelfno":51}
+      {"id":"3.56.a", "x":74,"y":542,"width":112,"height":5,"shelfno":51},
+      {"id":"3.59.b", "x":116,"y":472,"width":71,"height":4,"shelfno":53},
+      {"id":"3.60.a", "x":73,"y":402,"width":113,"height":4,"shelfno":52},
+      {"id":"3.60.b", "x":73,"y":397,"width":113,"height":4,"shelfno":52},
+      {"id":"3.61.a", "x":73,"y":379,"width":113,"height":4,"shelfno":52}
 ]
 
 var stacks = [
