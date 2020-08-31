@@ -5,8 +5,8 @@ function buildMessage(text) {
 		opacity:0,
 		transition:"none",
 		html:text,
-		height:"600px",
-		width:"500px",
+		height:"725px",
+		width:"575px",
 		scrolling:false
 	});
 }
@@ -40,8 +40,13 @@ function buildMaps(regions) {
 	drawingContext.fillStyle = "#C70039";
 
 	regions.forEach(region => {
-		drawingContext.fillRect(region.x, region.y, region.width - region.shelfno - 15, region.height);
-		drawingContext.fillRect(region.x + region.width - region.shelfno, region.y, region.shelfno, region.height);
+		if (region.shelfno > 0) {
+			drawingContext.fillRect(region.x/4, region.y/4, (region.width - region.shelfno)/4 - 16, region.height/4);
+			drawingContext.fillRect(region.x/4 + region.width/4 - region.shelfno/4, region.y/4, region.shelfno/4, region.height/4);
+		} else {
+			drawingContext.fillRect(region.x/4, region.y/4, region.width/4, region.height/4 + region.shelfno/4 - 16);
+			drawingContext.fillRect(region.x/4, region.y/4 + region.height/4 + region.shelfno/4, region.width/4, -1 * region.shelfno/4);
+		}
 		$('#theCanvas').show();
 	});
 
@@ -53,7 +58,7 @@ function buildMaps(regions) {
 		inline:true,
 		href:"#theMap",
 		height:"725px",
-		width:"540px",
+		width:"575px",
 		scrolling:false,
 		onCleanup:function() {
 			// When the modal window closes, get rid of the image, message, and rectangle
