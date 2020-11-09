@@ -6,13 +6,13 @@ Find@Roux is a work in progress. In short, it is a stacks mapping solution, a di
 Again, this code is provided as a *model*. It was inspired by work done by Ron Rilmour. More details about his project here: http://rgilmour70.github.io/stackMaps/. As Ron put it, all libraries have their own unique quirks: architectural, organizational, cataloging, etc. and these will need to be accounted for in any mapping system.
 
 ## Implementation ##
-✓ Added Bulma, a free, open source CSS framework (https://bulma.io/) 
-✓ Added Find@Roux maps for each floor
-✓ Modified the code to add support for subject areas
-✓ Highlighted multiple shelves on a map at the same time
-✓ Fixed the static map using Bulma to make it responsive
-✓ Live site: https://h.alef0.com/findAtRoux/findAtRoux.html
-✓ Proof of concept for finding a book: https://h.alef0.com/findAtRoux/findBookAtRoux.html
+* Added Bulma, a free, open source CSS framework (https://bulma.io/) 
+* Added Find@Roux maps for each floor
+* Modified the code to add support for subject areas
+* Highlighted multiple shelves on a map at the same time
+* Fixed the static map using Bulma to make it responsive
+* Live site: https://h.alef0.com/findAtRoux/findAtRoux.html
+* Proof of concept for finding a book: https://h.alef0.com/findAtRoux/results.html
 
 
 ## Customization ##
