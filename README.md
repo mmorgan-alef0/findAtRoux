@@ -11,6 +11,9 @@ Again, this code is provided as a *model*. It was inspired by work done by Ron R
 ✓ Modified the code to add support for subject areas
 ✓ Highlighted multiple shelves on a map at the same time
 ✓ Fixed the static map using Bulma to make it responsive
+✓ Live site: https://h.alef0.com/findAtRoux/findAtRoux.html
+✓ Proof of concept for finding a book: https://h.alef0.com/findAtRoux/findBookAtRoux.html
+
 
 ## Customization ##
 More details soon.
