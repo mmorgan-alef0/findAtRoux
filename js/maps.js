@@ -48,6 +48,12 @@ function buildMaps(regions) {
 			drawingContext.fillRect(region.x/4, region.y/4 + region.height/4 + region.shelfno/4, region.width/4, -1 * region.shelfno/4);
 		}
 		$('#theCanvas').show();
+
+
+		$('#theMap').append('<i id="marker" data-tooltip="Tooltip Text" class="fas fa-map-marker-alt"></i>');
+		$('#marker').css('left', region.x/4 + region.width/8 - 4) ;
+		$('#marker').css('top', region.y/4 - 16);
+	
 	});
 
    
@@ -75,6 +81,7 @@ function buildMaps(regions) {
 // Used for both static and dynamic locations
 
 function buildMap(data, callNumber) {
+
 	var locMessage = "";
 	var locCode = "";
 	var isStatic = false;

@@ -24,4 +24,10 @@
 
 .is-horizontal-center {
 	justify-content: center;
-  }
+}
+
+#marker {
+	position: absolute;
+	color: #C70039;
+	z-index: 100000;
+}
