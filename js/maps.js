@@ -38,6 +38,7 @@ function buildMaps(regions) {
 	var drawingContext = drawingLayer.getContext("2d");
 	drawingContext.globalAlpha = 0.8;
 	drawingContext.fillStyle = "#C70039";
+	var markerLeft = false, markerRight = false;
 
 	regions.forEach(region => {
 		if (region.shelfno > 0) {
@@ -47,16 +48,18 @@ function buildMaps(regions) {
 			drawingContext.fillRect(region.x/4, region.y/4, region.width/4, region.height/4 + region.shelfno/4 - 16);
 			drawingContext.fillRect(region.x/4, region.y/4 + region.height/4 + region.shelfno/4, region.width/4, -1 * region.shelfno/4);
 		}
-		$('#theCanvas').show();
 
-
-		$('#theMap').append('<i id="marker" data-tooltip="Tooltip Text" class="fas fa-map-marker-alt"></i>');
-		$('#marker').css('left', region.x/4 + region.width/8 - 4) ;
-		$('#marker').css('top', region.y/4 - 16);
-	
+		markerLeft = region.x/4 + region.width/8 - 4;
+		markerRight = region.y/4 - 16;	
 	});
 
-   
+	$('#theCanvas').show();
+	if (markerLeft && markerRight) {
+		$('#theMap').append('<i id="marker" data-tooltip="Tooltip Text" class="fas fa-map-marker-alt"></i>');
+		$('#marker').css('left', markerLeft) ;
+		$('#marker').css('top', markerRight);
+	}
+
    	// Display the map in a modal window.
 	$.colorbox({
 		opacity:0,
@@ -73,6 +76,7 @@ function buildMaps(regions) {
 			$('#theImage').remove();
 			$('#theCanvas').hide();
 			$('.locMessage').remove();
+			$('#marker').remove();
 		}
 	});
 }
